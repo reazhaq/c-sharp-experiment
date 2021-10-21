@@ -1,3 +1,8 @@
+# Project site
+* [C# Language Design](https://github.com/dotnet/csharplang)
+* [.NET Runtime](https://github.com/dotnet/runtime)
+* [Roslyn](https://github.com/dotnet/roslyn)
+
 # Timeline (very high level)
 
 * 1 (~2002-03): first release

@@ -4,42 +4,41 @@ using Xunit.Abstractions;
 
 namespace c_sharp_7
 {
-    /// <summary>
-    /// pattern matching using if-then-else
-    /// don't have to check the type explicitly
-    /// </summary>
-    public class E4PatternMatching1
+    public class E4PatternMatching2
     {
         private readonly ITestOutputHelper testOutputHelper;
 
-        public E4PatternMatching1(ITestOutputHelper testOutputHelper)
+        public E4PatternMatching2(ITestOutputHelper testOutputHelper)
         {
             this.testOutputHelper = testOutputHelper;
         }
 
-        private string WhoAmI_UsingIfStatements(Shape shape)
+        private string WhoAmI_UsingSwitch(Shape shape)
         {
             if (shape == null)
                 return "nothing to write about";
 
-            if (shape is Circle c)
-                return $"circle with name: {c.Name}";
+            switch (shape)
+            {
+                case Circle c:
+                    return $"circle with name: {c.Name}";
 
-            if (shape is Pentagon p)
-                return $"pentagon with name: {p.Name}";
+                case Pentagon p:
+                    return $"pentagon with name: {p.Name}";
 
-            // note - this has to come before next - else it would never get executed
-            if (shape is Rectangle r && r.Height == r.Width)
-                return $"square hiding as rectangle with name: {r.Name}";
-            // note - this has to come after previous one
-            if (shape is Rectangle r2)
-                return $"rectangle with name: {r2.Name}";
+                // note - this has to come before next - else it would never get executed
+                case Rectangle r when r.Height == r.Width:
+                    return $"square hiding as rectangle with name: {r.Name}";
+                // note - this has to come after previous one
+                case Rectangle r2:
+                    return $"rectangle with name: {r2.Name}";
 
-            if (shape is Square s)
-                return $"square with name: {s.Name}";
+                case Square s:
+                    return $"square with name: {s.Name}";
 
-            if (shape is Triangle t)
-                return $"triangle with name: {t.Name}";
+                case Triangle t:
+                    return $"triangle with name: {t.Name}";
+            }
 
             return "have no clue";
         }
@@ -49,7 +48,7 @@ namespace c_sharp_7
         {
             var circle = new Circle("c1");
 
-            var iAm = WhoAmI_UsingIfStatements(circle);
+            var iAm = WhoAmI_UsingSwitch(circle);
 
             testOutputHelper.WriteLine($"iAm a: {iAm}");
             Assert.Equal("circle with name: c1", iAm);
@@ -60,7 +59,7 @@ namespace c_sharp_7
         {
             var pentagon = new Pentagon("p1");
 
-            var iAm = WhoAmI_UsingIfStatements(pentagon);
+            var iAm = WhoAmI_UsingSwitch(pentagon);
 
             testOutputHelper.WriteLine($"iAm a: {iAm}");
             Assert.Equal("pentagon with name: p1", iAm);
@@ -71,7 +70,7 @@ namespace c_sharp_7
         {
             var fakeRectangle = new Rectangle("r1") { Height = 5, Width = 5 };
 
-            var iAm = WhoAmI_UsingIfStatements(fakeRectangle);
+            var iAm = WhoAmI_UsingSwitch(fakeRectangle);
 
             testOutputHelper.WriteLine($"iAm a: {iAm}");
             Assert.Equal("square hiding as rectangle with name: r1", iAm);
@@ -80,9 +79,9 @@ namespace c_sharp_7
         [Fact]
         public void Identify_Rectangle()
         {
-            var rectangle = new Rectangle("r2") { Height= 5, Width = 4 };
+            var rectangle = new Rectangle("r2") { Height = 5, Width = 4 };
 
-            var iAm = WhoAmI_UsingIfStatements(rectangle);
+            var iAm = WhoAmI_UsingSwitch(rectangle);
 
             testOutputHelper.WriteLine($"iAm a: {iAm}");
             Assert.Equal("rectangle with name: r2", iAm);
@@ -93,7 +92,7 @@ namespace c_sharp_7
         {
             var square = new Square("s1") { Side = 5 };
 
-            var iAm = WhoAmI_UsingIfStatements(square);
+            var iAm = WhoAmI_UsingSwitch(square);
 
             testOutputHelper.WriteLine($"iAm a: {iAm}");
             Assert.Equal("square with name: s1", iAm);
@@ -104,7 +103,7 @@ namespace c_sharp_7
         {
             var triangle = new Triangle("t1");
 
-            var iAm = WhoAmI_UsingIfStatements(triangle);
+            var iAm = WhoAmI_UsingSwitch(triangle);
 
             testOutputHelper.WriteLine($"iAm a: {iAm}");
             Assert.Equal("triangle with name: t1", iAm);

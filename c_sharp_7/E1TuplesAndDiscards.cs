@@ -9,11 +9,11 @@ namespace c_sharp_7
     /// old one had to be used as item1, item2, etc.
     /// new one - items can have names
     /// </summary>
-    public class E1Tuples
+    public class E1TuplesAndDiscards
     {
         private readonly ITestOutputHelper _testOutputHelper;
 
-        public E1Tuples(ITestOutputHelper testOutputHelper)
+        public E1TuplesAndDiscards(ITestOutputHelper testOutputHelper)
         {
             _testOutputHelper = testOutputHelper;
         }
@@ -104,18 +104,30 @@ namespace c_sharp_7
         [Fact]
         public void Nice_way_to_return_anonymous_type_looking_object_but_value_type()
         {
-            var aObject = GetCustomerRecord();
+            var anObject = GetCustomerRecord();
 
-            Assert.Equal("first", aObject.firstName);
-            Assert.Equal("last", aObject.lastName);
-            Assert.Equal(24, aObject.age);
-            _testOutputHelper.WriteLine($"{aObject.GetType()}{Environment.NewLine}");
-            Assert.Equal(typeof(ValueTuple<string, string, int>), aObject.GetType());
+            Assert.Equal("first", anObject.firstName);
+            Assert.Equal("last", anObject.lastName);
+            Assert.Equal(24, anObject.age);
+            _testOutputHelper.WriteLine($"{anObject.GetType()}{Environment.NewLine}");
+            Assert.Equal(typeof(ValueTuple<string, string, int>), anObject.GetType());
 
             var aObject2 = GetCustomerRecord2();
             _testOutputHelper.WriteLine($"aObject2.GetType(): {aObject2.GetType()}{Environment.NewLine}");
             // aObject2.  <- this doesn't work
         }
+
+        [Fact]
+        public void Discard_allows_us_to_ignore_return_value()
+        {
+            // use underscore as place holder variable that you can't use later
+            var (fn, _, _) = GetCustomerRecord();
+
+            Assert.NotNull(fn);
+        }
+
+        ///////////////////////////////////////////////////////////////////////
+        /// additional side notes
 
         // nice way to return anonymous type looking object; but a value type
         (string firstName, string lastName, int age) GetCustomerRecord()

@@ -2,7 +2,7 @@
 using Xunit;
 using Xunit.Abstractions;
 
-namespace c_sharp_7
+namespace c_sharp_07
 {
     /// <summary>
     /// pattern matching using if-then-else
@@ -80,7 +80,7 @@ namespace c_sharp_7
         [Fact]
         public void Identify_Rectangle()
         {
-            var rectangle = new Rectangle("r2") { Height= 5, Width = 4 };
+            var rectangle = new Rectangle("r2") { Height = 5, Width = 4 };
 
             var iAm = WhoAmI_UsingIfStatements(rectangle);
 

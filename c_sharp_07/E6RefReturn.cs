@@ -2,7 +2,7 @@
 using Xunit;
 using Xunit.Abstractions;
 
-namespace c_sharp_7
+namespace c_sharp_07
 {
     public class E6RefReturn
     {
@@ -33,8 +33,8 @@ namespace c_sharp_7
 
         private int FindElementWithValueAndReturnIndex(int numberToFind, int[] sourceWhereToLook)
         {
-            for(int i = 0; i < sourceWhereToLook.Length; i++)
-                if(numberToFind == sourceWhereToLook[i])
+            for (int i = 0; i < sourceWhereToLook.Length; i++)
+                if (numberToFind == sourceWhereToLook[i])
                     return i;
 
             throw new Exception($"{numberToFind} not found");

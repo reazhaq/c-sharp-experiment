@@ -1,7 +1,7 @@
 ﻿using Xunit.Abstractions;
 using Xunit;
 
-namespace c_sharp_7
+namespace c_sharp_07
 {
     public class E3OutVariable
     {

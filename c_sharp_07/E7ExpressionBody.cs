@@ -2,7 +2,7 @@
 using Xunit;
 using Xunit.Abstractions;
 
-namespace c_sharp_7
+namespace c_sharp_07
 {
     /// <summary>
     /// expression body => means one liner - get rid of those curly braces

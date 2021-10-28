@@ -2,7 +2,7 @@
 using Xunit;
 using System;
 
-namespace c_sharp_7
+namespace c_sharp_07
 {
     /// <summary>
     /// deconstructor is not destructor/finalizer
@@ -27,7 +27,7 @@ namespace c_sharp_7
             {
                 this.FirstName = FirstName;
                 this.LastName = LastName;
-                this.DateOfBirth = dob;
+                DateOfBirth = dob;
             }
 
             public void Deconstruct(out string FirstName, out string LastName, out int Age)
@@ -48,7 +48,7 @@ namespace c_sharp_7
             testOutputHelper.WriteLine($"fn: {fn}, ln: {ln}, age: {age}");
             Assert.Equal("john", fn);
             Assert.Equal("doe", ln);
-            Assert.Equal((DateTime.Now.Year - 1990), age);
+            Assert.Equal(DateTime.Now.Year - 1990, age);
         }
 
         [Fact]
@@ -62,7 +62,7 @@ namespace c_sharp_7
             testOutputHelper.WriteLine($"fn: {fn}, ln: {ln}, age: {age}");
             Assert.Equal("john", fn);
             Assert.Equal("doe", ln);
-            Assert.Equal((DateTime.Now.Year - 1990), age);
+            Assert.Equal(DateTime.Now.Year - 1990, age);
         }
     }
 }

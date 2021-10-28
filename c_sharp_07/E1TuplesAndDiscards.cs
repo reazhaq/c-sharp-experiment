@@ -2,7 +2,7 @@ using System;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace c_sharp_7
+namespace c_sharp_07
 {
     /// <summary>
     /// old style tuple was ref type - new one is value type
@@ -133,7 +133,7 @@ namespace c_sharp_7
         (string firstName, string lastName, int age) GetCustomerRecord()
         {
             // this anonObject can't be returned
-            var anonObject = new {fn = "first", ln = "last", a = 24};
+            var anonObject = new { fn = "first", ln = "last", a = 24 };
             _testOutputHelper.WriteLine($"anonObject.GetType(): {anonObject.GetType()}{Environment.NewLine}");
 
             // but data can be returned as value tuple

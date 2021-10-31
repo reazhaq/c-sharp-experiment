@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using model.Geo;
+using Xunit;
 using Xunit.Abstractions;
 
 namespace c_sharp_08
@@ -38,7 +39,7 @@ namespace c_sharp_08
             Assert.Equal(expected, colorText);
         }
 
-        public string FormatName(string? firstName, string? middleName, string? lastName) =>
+        private string FormatName(string? firstName, string? middleName, string? lastName) =>
             (firstName, middleName, lastName) switch
             {
                 (null,      null,       null)       => "get yourself a name",
@@ -66,6 +67,72 @@ namespace c_sharp_08
 
             testOutputHelper.WriteLine($"for {f ?? "null"} {m ?? "null"} {l ?? "null"} => {result}");
             Assert.Equal(expected, result);
+        }
+
+        private string RockPaperScissors(string one, string other) =>
+            (one, other) switch
+            {
+                ("paper", "rock") => "one",
+                ("rock", "paper") => "other",
+                ("scissors", "paper") => "one",
+                ("paper", "scissors") => "other",
+                ("rock", "scissors") => "one",
+                ("scissors", "rock") => "other",
+                (_, _) => "tie"
+            };
+
+        [Theory]
+        [InlineData("paper", "rock", "one")]
+        [InlineData("paper", "scissors", "other")]
+        public void Rock_paper_scissors(string one, string other, string expected)
+        {
+            var winnerIs = RockPaperScissors(one, other);
+
+            testOutputHelper.WriteLine($"winner is: {winnerIs}");
+            Assert.Equal(expected, winnerIs);
+        }
+
+        public enum Quadrant
+        {
+            Unknown,
+            Origin,
+            First,
+            Second,
+            Third,
+            Fourth,
+            OnAxis
+        }
+
+        public Quadrant GetQuadrant(GeoPoint geoPoint) =>
+            geoPoint switch
+            {
+                (0, 0) => Quadrant.Origin,
+                var (x, y) when x > 0 && y > 0 => Quadrant.First,
+                var (x, y) when x < 0 && y > 0 => Quadrant.Second,
+                var (x, y) when x < 0 && y < 0 => Quadrant.Third,
+                var (x, y) when x > 0 && y < 0 => Quadrant.Fourth,
+                var (_ , _) => Quadrant.OnAxis,
+                _ => Quadrant.Unknown
+            };
+
+        [Theory]
+        [InlineData(0, 0, Quadrant.Origin)]
+        [InlineData(1, 1, Quadrant.First)]
+        [InlineData(-1, 1, Quadrant.Second)]
+        [InlineData(-1, -1, Quadrant.Third)]
+        [InlineData(1, -1, Quadrant.Fourth)]
+        [InlineData(0, 1, Quadrant.OnAxis)]
+        [InlineData(1, 0, Quadrant.OnAxis)]
+        [InlineData(0, -1, Quadrant.OnAxis)]
+        [InlineData(-1, 0, Quadrant.OnAxis)]
+        public void Where_am_i(int x, int y, Quadrant expectedQudrant)
+        {
+            var geoPoint = new GeoPoint(x, y);
+
+            var whereAmI = GetQuadrant(geoPoint);
+
+            testOutputHelper.WriteLine($"where am i: {whereAmI}");
+            Assert.Equal(expectedQudrant, whereAmI);
         }
     }
 }

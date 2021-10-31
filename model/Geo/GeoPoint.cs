@@ -10,5 +10,7 @@
             X = x;
             Y = y;
         }
+
+        public void Deconstruct(out int x, out int y) => (x, y) = (X, Y);
     }
 }

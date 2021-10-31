@@ -4,6 +4,8 @@ using Xunit.Abstractions;
 
 namespace c_sharp_09
 {
+    // automatic type inference - if the statement kind of tell you what type it is,
+    // don't need to explicitly spell it out
     public class E01NewExpression
     {
         private readonly ITestOutputHelper testOutputHelper;

@@ -22,7 +22,7 @@ namespace model.Geo
         public override bool Equals(object obj) =>
             Equals(obj as GeoPointImmutable);
 
-        public override int GetHashCode() => X + Y;
+        public override int GetHashCode() => HashCode.Combine(X, Y);
 
         public static bool operator ==(GeoPointImmutable left, GeoPointImmutable right) =>
             (left is null && right is null) || (left?.Equals(right) ?? false);

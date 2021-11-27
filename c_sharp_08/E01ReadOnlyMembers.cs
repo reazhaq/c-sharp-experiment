@@ -32,7 +32,7 @@ namespace c_sharp_08
             private static PersonStructWithRefReadOnlyReturn unknownPerson = new PersonStructWithRefReadOnlyReturn();
 
             //// this is not safe - cause caller can make changes to "unknownPerson"
-            //public ref PersonStructWithRefReadOnlyReturn UnknownPerson => ref unknownPerson;
+            // public ref PersonStructWithRefReadOnlyReturn UnknownPerson => ref unknownPerson;
 
             // caller using this can't make any changes - guaranteed
             public static ref readonly PersonStructWithRefReadOnlyReturn UnknownPerson => ref unknownPerson;
@@ -47,7 +47,7 @@ namespace c_sharp_08
             Assert.Equal("unknown", PersonStructWithRefReadOnlyReturn.UnknownPerson.Name);
             Assert.Equal("changed name", copyOfUnknowPerson.Name);
 
-            // this gives you direct reference to the original instance memory
+            // this gives you direct reference to the original instance
             // and compiler guarantees that it can't be used to make any changes to the instance
             ref readonly var directRefToUnknownPerson = ref PersonStructWithRefReadOnlyReturn.UnknownPerson;
             // directRefToUnknownPerson.Name = "try to change - but error";

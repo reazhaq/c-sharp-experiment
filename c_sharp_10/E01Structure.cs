@@ -65,4 +65,36 @@ public class E01Structure
         Assert.Equal(default(int), persons[1].Age);
         Assert.Equal(default(double), persons[1].Weight);
     }
+
+    private struct PersonWithConstructor
+    {
+        // because of custom constructor - this initialization never works
+        public string Name { get; set; } = "jon";
+
+        public PersonWithConstructor(string name)
+        {
+            Name = name;
+        }
+    }
+
+    private struct PersonWithoutConstructor
+    {
+        public string Name { get; set; } = "jon";
+    }
+
+    [Fact]
+    public void Custom_constructor_changes_how_struct_gets_constructed()
+    {
+        var p1 = new PersonWithConstructor();
+        Assert.Null(p1.Name);
+
+        var p2 = default(PersonWithConstructor);
+        Assert.Null(p2.Name);
+
+        var p3 = new PersonWithoutConstructor();
+        Assert.Equal("jon", p3.Name);
+
+        var p4 = default(PersonWithoutConstructor);
+        Assert.Null(p4.Name);
+    }
 }

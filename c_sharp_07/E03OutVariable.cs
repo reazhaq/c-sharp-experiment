@@ -3,11 +3,11 @@ using Xunit;
 
 namespace c_sharp_07
 {
-    public class E3OutVariable
+    public class E03OutVariable
     {
         private readonly ITestOutputHelper testOutputHelper;
 
-        public E3OutVariable(ITestOutputHelper testOutputHelper)
+        public E03OutVariable(ITestOutputHelper testOutputHelper)
         {
             this.testOutputHelper = testOutputHelper;
         }

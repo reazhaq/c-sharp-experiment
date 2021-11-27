@@ -4,11 +4,11 @@ using Xunit.Abstractions;
 
 namespace c_sharp_07
 {
-    public class E4PatternMatching2
+    public class E04PatternMatching2
     {
         private readonly ITestOutputHelper testOutputHelper;
 
-        public E4PatternMatching2(ITestOutputHelper testOutputHelper)
+        public E04PatternMatching2(ITestOutputHelper testOutputHelper)
         {
             this.testOutputHelper = testOutputHelper;
         }

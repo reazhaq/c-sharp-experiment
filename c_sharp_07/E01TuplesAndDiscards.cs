@@ -9,11 +9,11 @@ namespace c_sharp_07
     /// old one had to be used as item1, item2, etc.
     /// new one - items can have names
     /// </summary>
-    public class E1TuplesAndDiscards
+    public class E01TuplesAndDiscards
     {
         private readonly ITestOutputHelper _testOutputHelper;
 
-        public E1TuplesAndDiscards(ITestOutputHelper testOutputHelper)
+        public E01TuplesAndDiscards(ITestOutputHelper testOutputHelper)
         {
             _testOutputHelper = testOutputHelper;
         }

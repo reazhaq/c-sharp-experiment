@@ -8,11 +8,11 @@ namespace c_sharp_07
     /// pattern matching using if-then-else
     /// don't have to check the type explicitly
     /// </summary>
-    public class E4PatternMatching1
+    public class E04PatternMatching1
     {
         private readonly ITestOutputHelper testOutputHelper;
 
-        public E4PatternMatching1(ITestOutputHelper testOutputHelper)
+        public E04PatternMatching1(ITestOutputHelper testOutputHelper)
         {
             this.testOutputHelper = testOutputHelper;
         }

@@ -7,11 +7,11 @@ namespace c_sharp_07
     /// <summary>
     /// expression body => means one liner - get rid of those curly braces
     /// </summary>
-    public class E7ExpressionBody
+    public class E07ExpressionBody
     {
         private readonly ITestOutputHelper testOutputHelper;
 
-        public E7ExpressionBody(ITestOutputHelper testOutputHelper)
+        public E07ExpressionBody(ITestOutputHelper testOutputHelper)
         {
             this.testOutputHelper = testOutputHelper;
         }

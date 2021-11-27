@@ -4,11 +4,11 @@ using Xunit.Abstractions;
 
 namespace c_sharp_07
 {
-    public class E5LocalFunction
+    public class E05LocalFunction
     {
         private readonly ITestOutputHelper testOutputHelper;
 
-        public E5LocalFunction(ITestOutputHelper testOutputHelper)
+        public E05LocalFunction(ITestOutputHelper testOutputHelper)
         {
             this.testOutputHelper = testOutputHelper;
         }

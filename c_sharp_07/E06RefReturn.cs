@@ -4,12 +4,12 @@ using Xunit.Abstractions;
 
 namespace c_sharp_07
 {
-    public class E6RefReturn
+    public class E06RefReturn
     {
         private readonly ITestOutputHelper testOutputHelper;
         private int[] someNumbers = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
-        public E6RefReturn(ITestOutputHelper testOutputHelper)
+        public E06RefReturn(ITestOutputHelper testOutputHelper)
         {
             this.testOutputHelper = testOutputHelper;
         }

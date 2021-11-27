@@ -8,11 +8,11 @@ namespace c_sharp_07
     /// deconstructor is not destructor/finalizer
     /// idea is one quick way to deconstruct important inner values of an object.
     /// </summary>
-    public class E2Deconstructor
+    public class E02Deconstructor
     {
         private readonly ITestOutputHelper testOutputHelper;
 
-        public E2Deconstructor(ITestOutputHelper testOutputHelper)
+        public E02Deconstructor(ITestOutputHelper testOutputHelper)
         {
             this.testOutputHelper = testOutputHelper;
         }

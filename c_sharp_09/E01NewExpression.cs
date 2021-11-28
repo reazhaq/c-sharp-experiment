@@ -46,9 +46,14 @@ namespace c_sharp_09
         [Fact]
         public void Shorter_new_makes_fewer_things_to_type()
         {
+            // "new SomeObject()" can be shortened to "new()"
             SomeObject someObject = new() { MyListOfNumber = new() };
 
+            // this case - "new SomeObject()" is requried since we used "var"
+            var someObject2 = new SomeObject();
+
             Assert.IsType<SomeObject>(someObject);
+            Assert.IsType<SomeObject>(someObject2);
         }
     }
 }

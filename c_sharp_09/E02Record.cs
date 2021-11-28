@@ -16,11 +16,11 @@ namespace c_sharp_09
         }
 
         private record Person(string FirstName, string LastName);
-        //// this is same as - but much more
+        ////// this is same as Person - but much more
         //private class Person2
         //{
-        //    public string FirstName {  get; private set; }
-        //    public string LastName {  get; private set; }
+        //    public string FirstName { get; }
+        //    public string LastName { get; }
         //}
 
         [Fact]

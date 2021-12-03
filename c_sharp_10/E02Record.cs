@@ -9,23 +9,23 @@ public class E02Record
         this.testOutputHelper = testOutputHelper;
     }
 
-    private record class Person(string firstName, string lastName);
+    private record class PersonClass(string firstName, string lastName);
 
     [Fact]
     public void Record_class_is_ref_type()
     {
-        var p = new Person("jon", "doe");
+        var p = new PersonClass("jon", "doe");
 
         Assert.False(p.GetType().IsValueType);
         Assert.True(p.GetType().IsClass);
     }
 
-    private record struct Dog(string name);
+    private record struct PersonStruct(string firstName, string lastName);
 
     [Fact]
     public void Record_struct_is_value_type()
     {
-        var d = new Dog("pooch");
+        var d = new PersonStruct("jon", "doe");
 
         Assert.True(d.GetType().IsValueType);
         Assert.False(d.GetType().IsClass);

@@ -12,23 +12,20 @@ namespace c_sharp_07
             this.testOutputHelper = testOutputHelper;
         }
 
-        private readonly struct ReadonlyStructPerson
+        private readonly struct ReadOnlyStructPerson
         {
             // field has to be "readonly"
             public readonly int Id;
-            // implict readonly property - since there is no "set"
+            // readonly can't have any setter - not even a private one
             public string Name { get; }
 
-            public ReadonlyStructPerson(int id, string name)
+            public ReadOnlyStructPerson(int id, string name)
             {
                 Id = id;
                 Name = name;
             }
 
-            //public void ChangeId(int id)
-            //{
-            //    Id = id; // Error - can't be assigned, it is readonly
-            //}
+            //public void ChangeId(int id) => Id = id; // Error - can't be assigned, it is readonly
         }
 
         private struct RegularStructPerson
@@ -43,15 +40,25 @@ namespace c_sharp_07
                 Name = name;
             }
 
-            //public void ChangeId(int id)
-            //{
-            //    Id = id; // Error - can't be assigned, it is readonly
-            //}
+            //public void ChangeId(int id) => Id = id; // Error - can't be assigned, it is readonly
 
-            public void ChangeName(string newName)
+            public void ChangeName(string newName) => Name = newName; // this is good - calling private setter
+        }
+
+        private struct RegularButReadOnlyPerson
+        {
+            // field has to be "readonly"
+            public readonly int Id;
+            // readonly since no setter
+            public string Name { get; }
+
+            public RegularButReadOnlyPerson(int id, string name)
             {
-                Name = newName; // this is good - calling private setter
+                Id = id;
+                Name = name;
             }
+
+            //public void ChangeId(int id) => Id = id; // Error - can't be assigned, it is readonly
         }
     }
 }

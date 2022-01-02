@@ -15,7 +15,7 @@ namespace c_sharp_07
 
         private string WhoAmI_UsingSwitch(Shape shape)
         {
-            if (shape == null)
+            if (shape is null)
                 return "nothing to write about";
 
             switch (shape)

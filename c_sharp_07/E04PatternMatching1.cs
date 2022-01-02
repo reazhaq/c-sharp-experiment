@@ -19,7 +19,7 @@ namespace c_sharp_07
 
         private string WhoAmI_UsingIfStatements(Shape shape)
         {
-            if (shape == null)
+            if (shape is null)
                 return "nothing to write about";
 
             if (shape is Circle c)

@@ -22,6 +22,7 @@ namespace c_sharp_08
                 testOutputHelper.WriteLine($"{nameof(ISomeInterface)} - {nameof(Method2)}");
             }
 
+            //// https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/default-interface-methods-versions
             // now you can have static member too - but this can cause problems
             public static string Something = "something";
             // also static methods are allowed - but this can also cause problems

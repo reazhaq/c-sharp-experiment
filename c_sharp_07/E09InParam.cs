@@ -94,4 +94,45 @@ namespace c_sharp_07
             testOutputHelper.WriteLine($"p.Name = {p.Name}");
         }
     }
+
+    public class E09InParamWithClass
+    {
+        private readonly ITestOutputHelper testOutputHelper;
+
+        private class PersonClass
+        {
+            public string Name { get; set; }
+        }
+
+        public E09InParamWithClass(ITestOutputHelper testOutputHelper)
+        {
+            this.testOutputHelper = testOutputHelper;
+        }
+
+        private void NameInParam(in PersonClass p)
+        {
+            // in parameter is not changing, but object's property
+            // ref. by "p" is changing - this is allowed
+            // that's why "in" parameter with ref type
+            // doesn't make much diff
+            p.Name = "blah";
+        }
+
+        //// this is no good
+        //private void NameInParam2(in PersonClass p)
+        //{
+        //    // trying to change value of p - compiler error
+        //    p = new PersonClass { Name = "new name" };
+        //}
+
+        [Fact]
+        public void ChangeName()
+        {
+            var p = new PersonClass { Name = "name" };
+            NameInParam(in p);
+
+            testOutputHelper.WriteLine($"p.Name: {p.Name}");
+            Assert.Equal("blah", p.Name);
+        }
+    }
 }

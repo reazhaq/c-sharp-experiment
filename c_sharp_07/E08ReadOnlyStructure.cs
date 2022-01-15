@@ -12,29 +12,30 @@ namespace c_sharp_07
             this.testOutputHelper = testOutputHelper;
         }
 
-        private readonly struct ReadOnlyStructPerson
+        private readonly struct ReadOnlyPersonStruct
         {
             // field has to be "readonly"
             public readonly int Id;
             // readonly can't have any setter - not even a private one
             public string Name { get; }
 
-            public ReadOnlyStructPerson(int id, string name)
+            public ReadOnlyPersonStruct(int id, string name)
             {
                 Id = id;
                 Name = name;
             }
 
             //public void ChangeId(int id) => Id = id; // Error - can't be assigned, it is readonly
+            public override string ToString() => Name;
         }
 
-        private struct RegularStructPerson
+        private struct RegularPersonStruct
         {
             public readonly int Id;
             // regular structure can do private setter
             public string Name { get; private set; }
 
-            public RegularStructPerson(int id, string name)
+            public RegularPersonStruct(int id, string name)
             {
                 Id = id;
                 Name = name;
@@ -43,6 +44,7 @@ namespace c_sharp_07
             //public void ChangeId(int id) => Id = id; // Error - can't be assigned, it is readonly
 
             public void ChangeName(string newName) => Name = newName; // this is good - calling private setter
+            public override string ToString() => Name;
         }
 
         private struct RegularButReadOnlyPerson
@@ -59,6 +61,21 @@ namespace c_sharp_07
             }
 
             //public void ChangeId(int id) => Id = id; // Error - can't be assigned, it is readonly
+            //public void ChangeName(string name) => Name = name; // Error - can't be assigned, it is readonly
+            override public string ToString() => Name;
+        }
+
+        private void PrintReadOnlyPersonStruct(in ReadOnlyPersonStruct p)
+        {
+            testOutputHelper.WriteLine($"read-only-person-struct p.ToString: {p}");
+        }
+
+        [Fact]
+        public void PrintReadOnlyPersonStructTest()
+        {
+            var p = new ReadOnlyPersonStruct(1, "bob");
+
+            PrintReadOnlyPersonStruct(p);
         }
     }
 }

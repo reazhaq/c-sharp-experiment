@@ -3,6 +3,7 @@ using Xunit;
 using System;
 using System.Collections.Generic;
 using model.Geo;
+using System.Collections.Immutable;
 
 namespace c_sharp_09
 {
@@ -169,6 +170,27 @@ namespace c_sharp_09
             var hobbies = new List<string> { "hiking", "biking" };
             var p1 = new PersonWithHobbies("jon", "doe", hobbies);
             var p2 = new PersonWithHobbies("jon", "doe", hobbies);
+
+            var p1EqualsP2 = p1.Equals(p2);
+
+            // they are equal - cause same List is used
+            Assert.True(p1EqualsP2);
+            Assert.False(object.ReferenceEquals(p1, p2));
+        }
+
+        private record PersonWithImmutableHobbies(string FirstName, string LastName, ImmutableList<string> hobbies);
+
+        [Fact]
+        public void WithImmutableHobbies()
+        {
+            var h1 = ImmutableList<string>.Empty;
+            h1.Add("hiking");
+            h1.Add("biking");
+            var p1 = new PersonWithImmutableHobbies("jon", "doe", h1);
+
+            var h2 = ImmutableList<string>.Empty;
+            h2.AddRange(new[] { "hiking", "biking" });
+            var p2 = new PersonWithImmutableHobbies("jon", "doe", h2);
 
             var p1EqualsP2 = p1.Equals(p2);
 

@@ -51,13 +51,13 @@ namespace c_sharp_09
             p1 = p1 with { FirstName = "bobby" };
             
             // their refernce equality fails
-            Assert.False(object.ReferenceEquals(p1OldRef, p1));
+            Assert.False(ReferenceEquals(p1OldRef, p1));
 
             //// what if I assign back the same first name
             p1 = p1 with { FirstName = "jon" };
 
             // they are two different object
-            Assert.False(object.ReferenceEquals(p1OldRef, p1));
+            Assert.False(ReferenceEquals(p1OldRef, p1));
             // but value equal
             Assert.True(p1.Equals(p1OldRef));
         }
@@ -86,7 +86,7 @@ namespace c_sharp_09
             // p1 and p2 are equal - cause their properties are equal
             Assert.True(p1EqualsP2);
             // p1 and p2 are two different object in memory
-            Assert.False(object.ReferenceEquals(p1, p2));
+            Assert.False(ReferenceEquals(p1, p2));
         }
 
         [Fact]
@@ -101,7 +101,7 @@ namespace c_sharp_09
             // p1 and p2 are equal - cause their properties are equal
             Assert.True(p1EqualsP2);
             // p1 and p2 are two different object in memory
-            Assert.False(object.ReferenceEquals(p1, p2));
+            Assert.False(ReferenceEquals(p1, p2));
         }
 
         [Fact]
@@ -116,7 +116,7 @@ namespace c_sharp_09
             // h1 and h2 are equal - cause their properties are equal
             Assert.True(h1 == h2);
             // p1 and p2 are two different object in memory
-            Assert.False(object.ReferenceEquals(p1, p2));
+            Assert.False(ReferenceEquals(p1, p2));
         }
 
         // derived class with other value type or immutable type
@@ -131,7 +131,7 @@ namespace c_sharp_09
             var p1EqualsP2 = p1.Equals(p2);
 
             Assert.True(p1EqualsP2);
-            Assert.False(object.ReferenceEquals(p1, p2));
+            Assert.False(ReferenceEquals(p1, p2));
         }
 
         private record Employee(Person person, string title);
@@ -161,7 +161,7 @@ namespace c_sharp_09
 
             // they are not equal - cause List is a ref type
             Assert.False(p1EqualsP2);
-            Assert.False(object.ReferenceEquals(p1, p2));
+            Assert.False(ReferenceEquals(p1, p2));
         }
 
         [Fact]
@@ -175,7 +175,7 @@ namespace c_sharp_09
 
             // they are equal - cause same List is used
             Assert.True(p1EqualsP2);
-            Assert.False(object.ReferenceEquals(p1, p2));
+            Assert.False(ReferenceEquals(p1, p2));
         }
 
         private record PersonWithImmutableHobbies(string FirstName, string LastName, ImmutableList<string> hobbies);
@@ -184,19 +184,34 @@ namespace c_sharp_09
         public void WithImmutableHobbies()
         {
             var h1 = ImmutableList<string>.Empty;
-            h1.Add("hiking");
-            h1.Add("biking");
+            h1 = h1.Add("hiking");
+            h1 = h1.Add("biking");
             var p1 = new PersonWithImmutableHobbies("jon", "doe", h1);
 
             var h2 = ImmutableList<string>.Empty;
-            h2.AddRange(new[] { "hiking", "biking" });
+            h2 = h2.AddRange(new[] { "hiking", "biking" });
             var p2 = new PersonWithImmutableHobbies("jon", "doe", h2);
 
             var p1EqualsP2 = p1.Equals(p2);
 
-            // they are equal - cause same List is used
-            Assert.True(p1EqualsP2);
-            Assert.False(object.ReferenceEquals(p1, p2));
+            // are they equal - cause same List is used
+            Assert.False(p1EqualsP2);
+            Assert.False(ReferenceEquals(p1, p2));
+        }
+
+        [Fact]
+        public void WithImmutableHobbies_TryChange()
+        {
+            var h1 = ImmutableList<string>.Empty;
+            h1 = h1.AddRange(new[] { "hiking", "biking" });
+            var p1 = new PersonWithImmutableHobbies("jon", "doe", h1);
+
+            var h2 = p1.hobbies.Add("fishing");
+
+            Assert.False(ReferenceEquals(h1, h2));
+
+            Assert.Equal(2, p1.hobbies.Count);
+            Assert.Equal(3, h2.Count);
         }
 
         private record PersonWithLocation(string FirstName, string LastName, GeoPoint geoPoint) : Person(FirstName, LastName);
@@ -210,7 +225,7 @@ namespace c_sharp_09
             var p1EqualsP2 = p1.Equals(p2);
 
             Assert.False(p1EqualsP2);
-            Assert.False(object.ReferenceEquals(p1, p2));
+            Assert.False(ReferenceEquals(p1, p2));
         }
 
         private record PersonWithImmutableLocation(string FirstName, string LastName, GeoPointImmutable GeoPointImmutable) : Person(FirstName, LastName);
@@ -224,7 +239,7 @@ namespace c_sharp_09
             var p1EqualsP2 = p1.Equals(p2);
 
             Assert.True(p1EqualsP2);
-            Assert.False(object.ReferenceEquals(p1, p2));
+            Assert.False(ReferenceEquals(p1, p2));
         }
     }
 }

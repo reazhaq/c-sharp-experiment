@@ -39,11 +39,15 @@ namespace c_sharp_08
             public readonly override string ToString() => $"id: {Id} - name: {Name}";
         }
 
+        // look at IL code - this one has 3 extra lines of code; cause it makes
+        // a defensive local copy
         private void PrintPersonStructure(in PersonStruct p)
         {
             testOutputHelper.WriteLine(p.ToString());
         }
 
+        // look at IL code - this one has 3 fewer lines of code, cause it doesn't need
+        // to make a local copy
         private void PrintPersonStructWithReadOnlyMemeber(in PersonStructWithReadOnlyMemeber p)
         {
             testOutputHelper.WriteLine(p.ToString());

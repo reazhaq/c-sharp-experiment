@@ -82,6 +82,17 @@ public class E01Structure
         public string Name { get; set; } = "jon";
     }
 
+    private struct PersonWithEmptyConstructor
+    {
+        public string Name { get; set; } = "jon";
+        public int Age { get; set; }
+
+        public PersonWithEmptyConstructor()
+        {
+            Age = 0;
+        }
+    }
+
     [Fact]
     public void Custom_constructor_changes_how_struct_gets_constructed()
     {

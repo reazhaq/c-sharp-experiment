@@ -46,6 +46,7 @@ namespace c_sharp_09
 
             // first keep a copy of p1 ref - so that we can do ref equal comparison
             var p1OldRef = p1;
+            Assert.True(ReferenceEquals(p1, p1OldRef));
             
             //// this is allowed - and the new p1 is different object from previous one
             p1 = p1 with { FirstName = "bobby" };

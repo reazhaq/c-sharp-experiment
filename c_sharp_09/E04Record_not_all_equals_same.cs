@@ -3,7 +3,7 @@ using Xunit;
 
 namespace c_sharp_09
 {
-    public class E04Record
+    public class E04Record_not_all_equals_same
     {
         public record Person(string firstName, string lastName);
 

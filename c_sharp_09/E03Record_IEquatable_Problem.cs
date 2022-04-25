@@ -8,7 +8,7 @@ namespace c_sharp_09
     /// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-9.0/records
     /// </summary>
 
-    public class E03Record
+    public class E03Record_IEquatable_Problem
     {
         public sealed record PersonWithHobbies
         {

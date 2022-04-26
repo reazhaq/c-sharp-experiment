@@ -39,7 +39,7 @@ namespace c_sharp_09
                 LastName = lastName;
             }
 
-            public virtual bool Equals(PersonClass? other)
+            public bool Equals(PersonClass? other)
             {
                 if (other == null)
                     return false;

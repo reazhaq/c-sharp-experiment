@@ -63,5 +63,26 @@ namespace c_sharp_09
             testOutputHelper.WriteLine($"n: {n}");
             Assert.Equal("hawkeye", n);
         }
+
+        /// <summary>
+        /// this is a valid record - but this sort of code
+        /// doesn't generate correct deconstructor
+        /// </summary>
+        /// <param name="FirstName"></param>
+        /// <param name="LastName"></param>
+        private record Person2(string FirstName, string LastName)
+        {
+            public int Id { get; init; }
+        }
+
+        [Fact]
+        public void Deconstructor_can_miss_somethings()
+        {
+            var blackPanter = new Person2("black", "panther") { Id = 1 };
+
+            blackPanter.Deconstruct(out var fn, out var ln);
+
+            testOutputHelper.WriteLine($"fn:{fn}, ln:{ln}");
+        }
     }
 }

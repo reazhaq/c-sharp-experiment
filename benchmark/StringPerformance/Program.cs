@@ -7,9 +7,9 @@ namespace StringPerformance
         static void Main(string[] args)
         {
             //var createString = new CreateString();
-            //Console.WriteLine($"concat: {createString.ConcatString()}");
-            //Console.WriteLine($"format: {createString.FormatString()}");
-            //Console.WriteLine($"inter: {createString.InterpolatedString()}");
+            //System.Console.WriteLine($"concat: {createString.ConcatString()}");
+            //System.Console.WriteLine($"format: {createString.FormatString()}");
+            //System.Console.WriteLine($"inter: {createString.InterpolatedString()}");
             var _ = BenchmarkRunner.Run<CreateString>();
         }
     }

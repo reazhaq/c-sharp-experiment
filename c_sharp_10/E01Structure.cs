@@ -77,10 +77,10 @@ public class E01Structure
         }
     }
 
-    private struct PersonWithoutConstructor
-    {
-        public string Name { get; set; } = "jon";
-    }
+    //private struct PersonWithoutConstructor
+    //{
+    //    public string Name { get; set; } = "jon";
+    //}
 
     private struct PersonWithEmptyConstructor
     {
@@ -93,19 +93,19 @@ public class E01Structure
         }
     }
 
-    [Fact]
-    public void Custom_constructor_changes_how_struct_gets_constructed()
-    {
-        var p1 = new PersonWithConstructor();
-        Assert.Null(p1.Name);
+    //[Fact]
+    //public void Custom_constructor_changes_how_struct_gets_constructed()
+    //{
+    //    var p1 = new PersonWithConstructor();
+    //    Assert.Null(p1.Name);
 
-        var p2 = default(PersonWithConstructor);
-        Assert.Null(p2.Name);
+    //    var p2 = default(PersonWithConstructor);
+    //    Assert.Null(p2.Name);
 
-        var p3 = new PersonWithoutConstructor();
-        Assert.Equal("jon", p3.Name);
+    //    var p3 = new PersonWithoutConstructor();
+    //    Assert.Equal("jon", p3.Name);
 
-        var p4 = default(PersonWithoutConstructor);
-        Assert.Null(p4.Name);
-    }
+    //    var p4 = default(PersonWithoutConstructor);
+    //    Assert.Null(p4.Name);
+    //}
 }

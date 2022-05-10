@@ -1,4 +1,5 @@
-﻿using BenchmarkDotNet.Running;
+﻿using System;
+using System.Globalization;
 
 namespace StringPerformance
 {
@@ -6,11 +7,16 @@ namespace StringPerformance
     {
         static void Main(string[] args)
         {
-            //var createString = new CreateString();
-            //System.Console.WriteLine($"concat: {createString.ConcatString()}");
-            //System.Console.WriteLine($"format: {createString.FormatString()}");
-            //System.Console.WriteLine($"inter: {createString.InterpolatedString()}");
-            var _ = BenchmarkRunner.Run<CreateString>();
+            var createString = new CreateString();
+            Console.WriteLine($"concat: {createString.ConcatString()}");
+            Console.WriteLine($"format: {createString.FormatString()}");
+            Console.WriteLine($"inter: {createString.InterpolatedString()}");
+
+            var todayIs = DateTime.Now;
+            var usS = string.Create(new CultureInfo("en-US"), $"en-US: today is: {todayIs}");
+            Console.WriteLine(usS);
+            var frS = string.Create(new CultureInfo("fr-FR"), $"fr-FR: today is: {todayIs}");
+            Console.WriteLine(frS);
         }
     }
 }

@@ -1,5 +1,8 @@
-﻿namespace StringPerformance
+﻿using BenchmarkDotNet.Attributes;
+
+namespace StringPerformance60
 {
+    [MemoryDiagnoser]
     public class CreateString
     {
         private int[] data = new[]
@@ -16,6 +19,7 @@
             91,92,99,94,95,96,97,98,99,100,
         };
 
+        [Benchmark]
         public string ConcatString()
         {
             var result = string.Empty;
@@ -26,6 +30,7 @@
             return result;
         }
 
+        [Benchmark]
         public string FormatString()
         {
             return string.Format(
@@ -51,6 +56,7 @@
                 data[90], data[91], data[92], data[93], data[94], data[95], data[96], data[97], data[98], data[99]);
         }
 
+        [Benchmark]
         public string InterpolatedString()
         {
             return $"{data[0]},{data[1]},{data[2]},{data[3]},{data[4]},{data[5]},{data[6]},{data[7]},{data[8]},{data[9]}," +

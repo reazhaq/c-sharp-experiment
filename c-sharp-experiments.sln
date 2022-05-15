@@ -25,9 +25,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "benchmark", "benchmark", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringPerformance", "benchmark\StringPerformance\StringPerformance.csproj", "{5F6CBF6A-F96E-4104-9AEC-0AF8E57B9124}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringPerformance31", "benchmark\StringPerformance31\StringPerformance31.csproj", "{50FF3F60-8182-4383-9E46-D1A98492FCC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringPerformance31", "benchmark\StringPerformance31\StringPerformance31.csproj", "{50FF3F60-8182-4383-9E46-D1A98492FCC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringPerformance60", "benchmark\StringPerformance60\StringPerformance60.csproj", "{4695143C-D775-4099-B7DE-F1786D282EDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringPerformance60", "benchmark\StringPerformance60\StringPerformance60.csproj", "{4695143C-D775-4099-B7DE-F1786D282EDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c_sharp_11", "c_sharp_11\c_sharp_11.csproj", "{06FC0818-8C21-4E3F-880B-820C2342679F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,10 @@ Global
 		{4695143C-D775-4099-B7DE-F1786D282EDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4695143C-D775-4099-B7DE-F1786D282EDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4695143C-D775-4099-B7DE-F1786D282EDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06FC0818-8C21-4E3F-880B-820C2342679F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06FC0818-8C21-4E3F-880B-820C2342679F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06FC0818-8C21-4E3F-880B-820C2342679F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06FC0818-8C21-4E3F-880B-820C2342679F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

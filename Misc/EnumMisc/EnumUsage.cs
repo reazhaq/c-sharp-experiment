@@ -20,7 +20,7 @@ public class EnumUsage
 
     // since casting a number to enum shows no-error during compile time or run time
     // using just casting to convert a number to color is not a good idea
-    public Color ColorFromNumberIncorrect(int number) => (Color)number;
+    public Color ColorFromNumber_Incorrect(int number) => (Color)number;
 
     [Theory]
     [InlineData(0)]
@@ -31,7 +31,7 @@ public class EnumUsage
     [InlineData(5)]
     public void Any_Number_Is_a_Color(int number)
     {
-        var c = ColorFromNumberIncorrect(number);
+        var c = ColorFromNumber_Incorrect(number);
         testOutputHelper.WriteLine($"{number} is color: {c}");
     }
 
@@ -55,5 +55,49 @@ public class EnumUsage
             testOutputHelper.WriteLine($"{number} is color: {color}");
         else
             testOutputHelper.WriteLine($"{number} is not a color");
+    }
+
+    // this is incorrect - cause it magically parses a number-as-text
+    // into color and assumes it is valid enum - no runtim error
+    public bool TryColorFromString_Incorrect(string colorName, out Color color) =>
+        Enum.TryParse(colorName, true, out color);
+
+    [Theory]
+    [InlineData("3")]
+    [InlineData("7")] // this one is happily converted to color
+    [InlineData("red")]
+    [InlineData("Red")]
+    [InlineData("red,2")]
+    [InlineData("red,green")]
+    [InlineData("red,white")] // this is interesting - not what you expected
+    [InlineData("yellow")]
+    [InlineData(null)]
+    public void InCorrect_Way_ToConvertTextToColor(string colorName)
+    {
+        if (TryColorFromString_Incorrect(colorName, out Color color))
+            testOutputHelper.WriteLine($"{colorName} converts to color: {color}");
+        else
+            testOutputHelper.WriteLine($"{colorName} is not a color");
+    }
+
+    public bool TryColorFromString(string colorName, out Color color) =>
+        Enum.TryParse(colorName, true, out color) && Enum.IsDefined(color);
+
+    [Theory]
+    [InlineData("3")]
+    [InlineData("7")] // this one is not converted to color
+    [InlineData("red")]
+    [InlineData("Red")]
+    [InlineData("red,2")]
+    [InlineData("red,green")]
+    [InlineData("red,white")] // this is interersting - not what you expected
+    [InlineData("yellow")]
+    [InlineData(null)]
+    public void Correct_Way_ToConvertTextToColor(string colorName)
+    {
+        if (TryColorFromString(colorName, out Color color))
+            testOutputHelper.WriteLine($"{colorName} converts to color: {color}");
+        else
+            testOutputHelper.WriteLine($"{colorName} is not a color");
     }
 }

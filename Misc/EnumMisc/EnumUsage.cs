@@ -100,4 +100,32 @@ public class EnumUsage
         else
             testOutputHelper.WriteLine($"{colorName} is not a color");
     }
+
+    // two problems with this method:
+    // 1st: it assumes only 4 enum values and if first 3 if fails - it must be "blue".
+    //  this intimate knowledge/tight-coupling forces updates in multiple similar places
+    //  if a color gets added
+    // 2nd problem - caller can send anything, like a large or negative number and it shall assume
+    //  this to be "blue"
+    // btw - this sort of multiple if statements is a code smell
+    public string CommonMistakeUsingEnum(Color color)
+    {
+        if (color == Color.Undefined)
+            return "undefined";
+        if (color == Color.Red)
+            return "red";
+        if (color == Color.White)
+            return "white";
+
+        return "blue";
+    }
+
+    [Theory]
+    [InlineData(Color.Red)]
+    [InlineData(Color.White)]
+    [InlineData((Color)9)]
+    public void UsingCommonMistake(Color color)
+    {
+        testOutputHelper.WriteLine($"{color} => {CommonMistakeUsingEnum(color)}");
+    }
 }

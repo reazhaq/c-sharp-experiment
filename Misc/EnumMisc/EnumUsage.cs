@@ -104,7 +104,7 @@ public class EnumUsage
     // two problems with this method:
     // 1st: it assumes only 4 enum values and if first 3 if fails - it must be "blue".
     //  this intimate knowledge/tight-coupling forces updates in multiple similar places
-    //  if a color gets added
+    //  if a color gets added to enum
     // 2nd problem - caller can send anything, like a large or negative number and it shall assume
     //  this to be "blue"
     // btw - this sort of multiple if statements is a code smell
@@ -123,6 +123,7 @@ public class EnumUsage
     [Theory]
     [InlineData(Color.Red)]
     [InlineData(Color.White)]
+    [InlineData((Color)(-7))]
     [InlineData((Color)9)]
     public void UsingCommonMistake(Color color)
     {

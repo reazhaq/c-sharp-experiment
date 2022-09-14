@@ -1,51 +1,47 @@
-﻿using Xunit;
-using Xunit.Abstractions;
+﻿namespace Misc;
 
-namespace Misc
+public class Whatever
 {
-    public class Whatever
+    private class SomePersonClass
     {
-        private class SomePersonClass
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-        }
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
 
-        private struct SomePersonStruct
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-        }
+    private struct SomePersonStruct
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
 
-        private void OutPersonClass(out SomePersonClass p)
+    private void OutPersonClass(out SomePersonClass p)
+    {
+        p = new SomePersonClass
         {
-            p = new SomePersonClass
-            {
-                Id = 1,
-                Name = "one"
-            };
-        }
+            Id = 1,
+            Name = "one"
+        };
+    }
 
-        private void OutPersonStruct(out SomePersonStruct p)
+    private void OutPersonStruct(out SomePersonStruct p)
+    {
+        p = new SomePersonStruct
         {
-            p = new SomePersonStruct
-            {
-                Id = 2,
-                Name = "two"
-            };
-        }
+            Id = 2,
+            Name = "two"
+        };
+    }
 
-        [Fact]
-        public void OutExperiment()
-        {
-            SomePersonClass somePersonClass;
-            OutPersonClass(out somePersonClass);
-            Assert.NotNull(somePersonClass);
-            Assert.Equal("one", somePersonClass.Name);
+    [Fact]
+    public void OutExperiment()
+    {
+        SomePersonClass somePersonClass;
+        OutPersonClass(out somePersonClass);
+        Assert.NotNull(somePersonClass);
+        Assert.Equal("one", somePersonClass.Name);
 
-            SomePersonStruct somePersonStruct;
-            OutPersonStruct(out somePersonStruct);
-            Assert.Equal("two", somePersonStruct.Name);
-        }
+        SomePersonStruct somePersonStruct;
+        OutPersonStruct(out somePersonStruct);
+        Assert.Equal("two", somePersonStruct.Name);
     }
 }

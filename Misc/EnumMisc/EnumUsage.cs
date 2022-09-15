@@ -1,8 +1,11 @@
 ﻿namespace Misc.EnumMisc;
 
-public enum Color
+/// <summary>
+/// starting with undefined is a good idea; specially when working with flags
+/// also enum is just a number behind the scene and default for int is zero
+/// </summary>
+public enum Colors
 {
-    // starting with undefined is a good idea; specially when working with legacy code
     Undefined = 0,
     Red,
     White,
@@ -18,9 +21,13 @@ public class EnumUsage
         this.testOutputHelper = testOutputHelper;
     }
 
-    // since casting a number to enum shows no-error during compile time or run time
-    // using just casting to convert a number to color is not a good idea
-    public Color ColorFromNumber_Incorrect(int number) => (Color)number;
+    /// <summary>
+    /// since casting a number to enum shows no-error during compile time or run time
+    /// using just casting to convert a number to color is not a good idea
+    /// </summary>
+    /// <param name="number"></param>
+    /// <returns></returns>
+    public Colors ColorFromNumber_Incorrect(int number) => (Colors)number;
 
     [Theory]
     [InlineData(0)]
@@ -35,10 +42,15 @@ public class EnumUsage
         testOutputHelper.WriteLine($"{number} is color: {c}");
     }
 
-    // correct way to check
-    public bool TryColorFromNumber(int number, out Color color)
+    /// <summary>
+    /// correct way to check
+    /// </summary>
+    /// <param name="number"></param>
+    /// <param name="color"></param>
+    /// <returns></returns>
+    public bool TryColorFromNumber(int number, out Colors color)
     {
-        color = (Color)number;
+        color = (Colors)number;
         return Enum.IsDefined(color);
     }
 
@@ -51,15 +63,20 @@ public class EnumUsage
     [InlineData(5)]
     public void CorrectWayToConvertNumberToEnum(int number)
     {
-        if (TryColorFromNumber(number, out Color color))
+        if (TryColorFromNumber(number, out Colors color))
             testOutputHelper.WriteLine($"{number} is color: {color}");
         else
             testOutputHelper.WriteLine($"{number} is not a color");
     }
 
-    // this is incorrect - cause it magically parses a number-as-text
-    // into color and assumes it is valid enum - no runtim error
-    public bool TryColorFromString_Incorrect(string colorName, out Color color) =>
+    /// <summary>
+    /// this is incorrect - cause it magically parses a number-as-text
+    /// into color and assumes it is valid enum - no runtim error
+    /// </summary>
+    /// <param name="colorName"></param>
+    /// <param name="color"></param>
+    /// <returns></returns>
+    public bool TryColorFromString_Incorrect(string colorName, out Colors color) =>
         Enum.TryParse(colorName, true, out color);
 
     [Theory]
@@ -74,13 +91,19 @@ public class EnumUsage
     [InlineData(null)]
     public void InCorrect_Way_ToConvertTextToColor(string colorName)
     {
-        if (TryColorFromString_Incorrect(colorName, out Color color))
+        if (TryColorFromString_Incorrect(colorName, out Colors color))
             testOutputHelper.WriteLine($"{colorName} converts to color: {color}");
         else
             testOutputHelper.WriteLine($"{colorName} is not a color");
     }
 
-    public bool TryColorFromString(string colorName, out Color color) =>
+    /// <summary>
+    /// this is the correct way
+    /// </summary>
+    /// <param name="colorName"></param>
+    /// <param name="color"></param>
+    /// <returns></returns>
+    public bool TryColorFromString(string colorName, out Colors color) =>
         Enum.TryParse(colorName, true, out color) && Enum.IsDefined(color);
 
     [Theory]
@@ -95,7 +118,7 @@ public class EnumUsage
     [InlineData(null)]
     public void Correct_Way_ToConvertTextToColor(string colorName)
     {
-        if (TryColorFromString(colorName, out Color color))
+        if (TryColorFromString(colorName, out Colors color))
             testOutputHelper.WriteLine($"{colorName} converts to color: {color}");
         else
             testOutputHelper.WriteLine($"{colorName} is not a color");
@@ -108,24 +131,24 @@ public class EnumUsage
     // 2nd problem - caller can send anything, like a large or negative number and it shall assume
     //  this to be "blue"
     // btw - this sort of multiple if statements is a code smell
-    public string CommonMistakeUsingEnum(Color color)
+    public string CommonMistakeUsingEnum(Colors color)
     {
-        if (color == Color.Undefined)
+        if (color == Colors.Undefined)
             return "undefined";
-        if (color == Color.Red)
+        if (color == Colors.Red)
             return "red";
-        if (color == Color.White)
+        if (color == Colors.White)
             return "white";
 
         return "blue";
     }
 
     [Theory]
-    [InlineData(Color.Red)]
-    [InlineData(Color.White)]
-    [InlineData((Color)(-7))]
-    [InlineData((Color)9)]
-    public void UsingCommonMistake(Color color)
+    [InlineData(Colors.Red)]
+    [InlineData(Colors.White)]
+    [InlineData((Colors)(-7))]
+    [InlineData((Colors)9)]
+    public void UsingCommonMistake(Colors color)
     {
         testOutputHelper.WriteLine($"{color} => {CommonMistakeUsingEnum(color)}");
     }

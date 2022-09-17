@@ -36,7 +36,7 @@ public class EnumUsage
     [InlineData(3)]
     [InlineData(4)]
     [InlineData(5)]
-    public void Any_Number_Is_a_Color(int number)
+    public void InCorrect_Way_ToConvert_NumberToEnum(int number)
     {
         var c = ColorFromNumber_Incorrect(number);
         testOutputHelper.WriteLine($"{number} is color: {c}");
@@ -48,7 +48,7 @@ public class EnumUsage
     /// <param name="number"></param>
     /// <param name="color"></param>
     /// <returns></returns>
-    public bool TryColorFromNumber(int number, out Colors color)
+    public bool TryColorFromNumber_Correct(int number, out Colors color)
     {
         color = (Colors)number;
         return Enum.IsDefined(color);
@@ -61,9 +61,9 @@ public class EnumUsage
     [InlineData(3)]
     [InlineData(4)]
     [InlineData(5)]
-    public void CorrectWayToConvertNumberToEnum(int number)
+    public void Correct_Way_ToConvert_NumberToEnum(int number)
     {
-        if (TryColorFromNumber(number, out Colors color))
+        if (TryColorFromNumber_Correct(number, out Colors color))
             testOutputHelper.WriteLine($"{number} is color: {color}");
         else
             testOutputHelper.WriteLine($"{number} is not a color");
@@ -89,7 +89,7 @@ public class EnumUsage
     [InlineData("red,white")] // this is interesting - not what you expected
     [InlineData("yellow")]
     [InlineData(null)]
-    public void InCorrect_Way_ToConvertTextToColor(string colorName)
+    public void InCorrect_Way_ToConvert_TextToColor(string colorName)
     {
         if (TryColorFromString_Incorrect(colorName, out Colors color))
             testOutputHelper.WriteLine($"{colorName} converts to color: {color}");
@@ -113,10 +113,10 @@ public class EnumUsage
     [InlineData("Red")]
     [InlineData("red,2")]
     [InlineData("red,green")]
-    [InlineData("red,white")] // this is interersting - not what you expected
+    [InlineData("red,white")] // still not what you expected
     [InlineData("yellow")]
     [InlineData(null)]
-    public void Correct_Way_ToConvertTextToColor(string colorName)
+    public void Correct_Way_ToConvert_TextToColor(string colorName)
     {
         if (TryColorFromString(colorName, out Colors color))
             testOutputHelper.WriteLine($"{colorName} converts to color: {color}");

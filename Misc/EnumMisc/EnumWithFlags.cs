@@ -50,7 +50,7 @@ public class EnumWithFlags
     {
         for (int i = 0; i < 129; i++)
         {
-            testOutputHelper.WriteLine($"enum value for {i:00} => {(Days)i}");
+            testOutputHelper.WriteLine($"enum value for {i:000} => {(Days)i}");
         }
     }
 
@@ -65,6 +65,25 @@ public class EnumWithFlags
         {
             testOutputHelper.WriteLine($"enum value for {i:00} => {(WeekDays)i}");
         }
+    }
+
+    [Theory]
+    [InlineData(Days.Monday)]
+    [InlineData(Days.Wednesday)]
+    [InlineData(Days.Thursday)]
+    [InlineData(Days.Undefined)]
+    [InlineData(Days.Monday | Days.Tuesday | Days.Wednesday | Days.Thursday | Days.Friday)]
+    [InlineData(Days.Undefined | Days.Friday)]
+    public void HowDoesEqualWorks(Days days)
+    {
+        testOutputHelper.WriteLine($"{Days.Undefined == days}: Days.Undefined == {days}");
+        testOutputHelper.WriteLine($"{Days.Monday == days}: Days.Monday == {days}");
+        testOutputHelper.WriteLine($"{Days.Tuesday == days}: Days.Tuesday == {days}");
+        testOutputHelper.WriteLine($"{Days.Wednesday == days}: Days.Wednesday == {days}");
+        testOutputHelper.WriteLine($"{Days.Thursday == days}: Days.Thursday == {days}");
+        testOutputHelper.WriteLine($"{Days.Friday == days}: Days.Friday == {days}");
+        testOutputHelper.WriteLine($"{Days.Saturday == days}: Days.Saturday == {days}");
+        testOutputHelper.WriteLine($"{Days.Sunday == days}: Days.Sunday == {days}");
     }
 
     [Theory]

@@ -4,7 +4,10 @@ using System.Reflection;
 
 namespace Misc.EnumMisc.CodeSmellCleanup;
 
-public abstract class Enumeration : IComparable
+/// <summary>
+/// https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/enumeration-classes-over-enum-types
+/// </summary>
+public abstract class Enumeration : IComparable, IEquatable<Enumeration>, IComparable<Enumeration>
 {
     private readonly int value;
     private readonly string displayName;
@@ -15,20 +18,11 @@ public abstract class Enumeration : IComparable
         this.displayName = displayName;
     }
 
-    public int Value
-    {
-        get { return value; }
-    }
+    public int Value => value;
 
-    public string DisplayName
-    {
-        get { return displayName; }
-    }
+    public string DisplayName => displayName;
 
-    public override string ToString()
-    {
-        return DisplayName;
-    }
+    public override string ToString() => displayName;
 
     public static IEnumerable<T> GetAll<T>() where T : Enumeration, new()
     {
@@ -47,25 +41,16 @@ public abstract class Enumeration : IComparable
         }
     }
 
-    public override bool Equals(object obj)
+    public bool Equals(Enumeration other)
     {
-        var otherValue = obj as Enumeration;
-
-        if (otherValue == null)
-        {
-            return false;
-        }
-
-        var typeMatches = GetType().Equals(obj.GetType());
-        var valueMatches = value.Equals(otherValue.Value);
-
-        return typeMatches && valueMatches;
+        if (other == null) return false;
+        return value == other.value && displayName == other.displayName;
     }
 
-    public override int GetHashCode()
-    {
-        return value.GetHashCode();
-    }
+    public override bool Equals(object obj) =>
+        Equals(obj as Enumeration);
+
+    public override int GetHashCode() => value.GetHashCode();
 
     public static int AbsoluteDifference(Enumeration firstValue, Enumeration secondValue)
     {
@@ -75,17 +60,17 @@ public abstract class Enumeration : IComparable
 
     public static T FromValue<T>(int value) where T : Enumeration, new()
     {
-        var matchingItem = parse<T, int>(value, "value", item => item.Value == value);
+        var matchingItem = Parse<T, int>(value, "value", item => item.Value == value);
         return matchingItem;
     }
 
     public static T FromDisplayName<T>(string displayName) where T : Enumeration, new()
     {
-        var matchingItem = parse<T, string>(displayName, "display name", item => item.DisplayName == displayName);
+        var matchingItem = Parse<T, string>(displayName, "display name", item => item.DisplayName == displayName);
         return matchingItem;
     }
 
-    private static T parse<T, K>(K value, string description, Func<T, bool> predicate) where T : Enumeration, new()
+    private static T Parse<T, K>(K value, string description, Func<T, bool> predicate) where T : Enumeration, new()
     {
         var matchingItem = GetAll<T>().FirstOrDefault(predicate);
 
@@ -98,8 +83,9 @@ public abstract class Enumeration : IComparable
         return matchingItem;
     }
 
-    public int CompareTo(object other)
-    {
-        return Value.CompareTo(((Enumeration)other).Value);
-    }
+    public int CompareTo(object other) =>
+        CompareTo(other as Enumeration);
+
+    public int CompareTo(Enumeration other) =>
+        other is null ? 1 : Value.CompareTo(other.Value);
 }

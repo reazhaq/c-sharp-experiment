@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-
-namespace Misc.IfThenElse;
+﻿namespace Misc.IfThenElse;
 
 public class TooManyIfStatements
 {

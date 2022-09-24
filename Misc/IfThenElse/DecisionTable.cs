@@ -37,8 +37,8 @@ public class DecisionTable
     /// | yes          | student     | field trip    | in-state      | 0001           |
     /// | yes          | student     | field trip    | out-of-state  | 0002           |
     /// | yes          | student     | field trip    | international | 0003           |
-    /// | yes          | teacher     | seminar       | in-state      | 0003           |
-    /// | yes          | teacher     | personal      | international | 0004           |
+    /// | n/a          | teacher     | seminar       | in-state      | 0003           |
+    /// | n/a          | teacher     | personal      | n/a           | 0004           |
     /// </summary>
     public string FindExpenseAccount(bool grTravel, TravelTypes tt, TravelReasons tr, Destinations d) =>
         (grTravel, tt, tr, d) switch
@@ -46,8 +46,8 @@ public class DecisionTable
             (true, TravelTypes.Student, TravelReasons.FieldTrip, Destinations.InState      ) => "0001",
             (true, TravelTypes.Student, TravelReasons.FieldTrip, Destinations.OutOfState   ) => "0002",
             (true, TravelTypes.Student, TravelReasons.FieldTrip, Destinations.International) => "0003",
-            (true, TravelTypes.Teacher, TravelReasons.Seminar  , Destinations.InState      ) => "0003",
-            (true, TravelTypes.Teacher, TravelReasons.Personal , Destinations.International) => "0004",
+            (_   , TravelTypes.Teacher, TravelReasons.Seminar  , Destinations.InState      ) => "0003",
+            (_   , TravelTypes.Teacher, TravelReasons.Personal , _                         ) => "0004",
             _ => throw new NotImplementedException(),
         };
 
@@ -62,5 +62,6 @@ public class DecisionTable
         var expenseAccount = FindExpenseAccount(grTravel, tt, tr, d);
 
         Assert.Equal(expectedReturn, expenseAccount);
+        testOutputHelper.WriteLine($"gr:{grTravel}, tt:{tt} tr:{tr} d:{d} expenseAccount:{expenseAccount}");
     }
 }

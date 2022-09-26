@@ -1,8 +1,8 @@
 ﻿flavors of if-else pattern
 
-1. too many if-else branches - example: `TooManyIfStatements.cs`
-1. multiple if branches with enum - example: `CleanCodeUsingEnumeration.cs`
-1. lots of nested conditions - if this and that but not the other - can I use truth table here?
+* too many if-else branches - example: `TooManyIfStatements.cs`
+* multiple if branches with enum - example: `CleanCodeUsingEnumeration.cs`
+* lots of nested conditions - if this and that but not the other - can I use truth table here? example: `DecisionTable.cs`
   - pattern look more like `approved` or `not` based on lots and lots of boolean variable states. Best to start with a decision table, like a truth table
 
   | New Customer | Has Coupon | Existing Customer | Elite Customer | Over $200 | Over $500 | Free Shipping |
@@ -30,6 +30,17 @@ Similar pattern but little more complex, not all of them are yes-no, but some ha
 
 We can make decision table like above using switch statements
 
-1. state machine - for certain - certain condition object moves from one state to another
-1. chain of processing - one finishes and passes on to another
-1. visitor pattern - shipping based on item size
+* visitor pattern - printing document using correct printer - more of single responsibility - example: `LetExpertDoTheWork.cs`
+* state machine - for certain - certain condition object moves from one state to another. state machines are everywhere - like ATM machine, elevator, climbing stairs...
+  - like and dislike count
+    - start state
+    - user clicks `like`
+      - if in start-state, increase the like count, move to like-state
+      - if in like-state, decrease the like count, move to start-state
+      - if in dislike-state, decrease the like count, increase dislike count, move to dislike-state
+    - user clicks `dislike` button
+      - if in start-state, increase the dislike count, move to dislike-state
+      - if in like-state, decrease the like count, increase dislike count, move to dislike-state
+      - if in dislike-state, decrease dislike count, move to start-state
+    - like and dislike count goes down only if count is positive
+* chain of processing - one finishes and passes on to another. examples like order taken, goes to payment, goes to inventory, goes to shipping, etc. these are best cases for a true distributed (msg base) system for scalability

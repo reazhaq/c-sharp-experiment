@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
+using System.Text;
 
 namespace StringPerformance60
 {
@@ -69,6 +70,30 @@ namespace StringPerformance60
                 $"{data[70]},{data[71]},{data[72]},{data[73]},{data[74]},{data[75]},{data[76]},{data[77]},{data[78]},{data[79]}," +
                 $"{data[80]},{data[81]},{data[82]},{data[83]},{data[84]},{data[85]},{data[86]},{data[87]},{data[88]},{data[89]}," +
                 $"{data[90]},{data[91]},{data[92]},{data[93]},{data[94]},{data[95]},{data[96]},{data[97]},{data[98]},{data[99]},";
+        }
+
+        [Benchmark]
+        public string ConcatUsingStringBuilder()
+        {
+            var sb = new StringBuilder();
+            for (int i = 0; i < data.Length; i++)
+            {
+                sb.Append(data[i]);
+                sb.Append(",");
+            }
+            return sb.ToString();
+        }
+
+        [Benchmark]
+        public string ConcatUsingStringBuilderFixedLength()
+        {
+            var sb = new StringBuilder(300);
+            for (int i = 0; i < data.Length; i++)
+            {
+                sb.Append(data[i]);
+                sb.Append(",");
+            }
+            return sb.ToString();
         }
     }
 }

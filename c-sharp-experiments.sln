@@ -43,6 +43,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringPerformance60", "benc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoopPerformance", "benchmark\Loop\LoopPerformance\LoopPerformance.csproj", "{49484A2F-67E2-45E9-ABA5-5CAEA23C69AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoopPerformanceWithDoSomething", "benchmark\Loop\LoopPerformanceWithDoSomething\LoopPerformanceWithDoSomething.csproj", "{88F9DC63-4688-475A-8035-527835BEA141}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,10 @@ Global
 		{49484A2F-67E2-45E9-ABA5-5CAEA23C69AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49484A2F-67E2-45E9-ABA5-5CAEA23C69AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49484A2F-67E2-45E9-ABA5-5CAEA23C69AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88F9DC63-4688-475A-8035-527835BEA141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88F9DC63-4688-475A-8035-527835BEA141}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88F9DC63-4688-475A-8035-527835BEA141}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88F9DC63-4688-475A-8035-527835BEA141}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -114,6 +120,7 @@ Global
 		{39C0B294-9E34-476E-81E4-221289C1795F} = {2C9F79F5-2A87-4AAB-A27D-EADFED7B4D3A}
 		{7575AB43-A66C-4494-AD2E-A4672261D46F} = {2C9F79F5-2A87-4AAB-A27D-EADFED7B4D3A}
 		{49484A2F-67E2-45E9-ABA5-5CAEA23C69AE} = {78ED2F46-53C4-41F2-A173-7A7D45FFA856}
+		{88F9DC63-4688-475A-8035-527835BEA141} = {78ED2F46-53C4-41F2-A173-7A7D45FFA856}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CFCD26D1-8DF1-4045-AD67-C0213D17C09E}

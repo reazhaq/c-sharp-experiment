@@ -16,11 +16,8 @@ public class LoopBenchmarks
     [Params(10, 100, 1_000, 10_000, 100_000)]
     public int LoopSize { get; set; }
 
-    private Random random = new Random(100);
-
-    public void DoSomething(int _)
+    public void DoSomething(int someRandomNumber)
     {
-        var someRandomNumber = random.Next(100, 1000);
         while (someRandomNumber > 0)
         {
             someRandomNumber--;

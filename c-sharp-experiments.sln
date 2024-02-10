@@ -41,11 +41,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringPerformance31", "benc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringPerformance60", "benchmark\String\StringPerformance60\StringPerformance60.csproj", "{7575AB43-A66C-4494-AD2E-A4672261D46F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoopPerformance", "benchmark\Loop\LoopPerformance\LoopPerformance.csproj", "{49484A2F-67E2-45E9-ABA5-5CAEA23C69AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoopPerformance", "benchmark\Loop\LoopPerformance\LoopPerformance.csproj", "{49484A2F-67E2-45E9-ABA5-5CAEA23C69AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoopPerformanceWithDoSomething", "benchmark\Loop\LoopPerformanceWithDoSomething\LoopPerformanceWithDoSomething.csproj", "{88F9DC63-4688-475A-8035-527835BEA141}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoopPerformanceWithDoSomething", "benchmark\Loop\LoopPerformanceWithDoSomething\LoopPerformanceWithDoSomething.csproj", "{88F9DC63-4688-475A-8035-527835BEA141}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoopPerformanceWithDoSomethingAsync", "benchmark\Loop\LoopPerformanceWithDoSomethingAsync\LoopPerformanceWithDoSomethingAsync.csproj", "{2AE2C5D2-596B-4F45-9BB3-D6197AD2B565}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoopPerformanceWithDoSomethingAsync", "benchmark\Loop\LoopPerformanceWithDoSomethingAsync\LoopPerformanceWithDoSomethingAsync.csproj", "{2AE2C5D2-596B-4F45-9BB3-D6197AD2B565}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandLineExperiment", "CommandLineExperiment\CommandLineExperiment.csproj", "{306D4F9B-9B9D-458F-8BCB-3A184C1E2915}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Collection", "Collection", "{56C4A736-3D45-4E35-A872-6D2DB054E5D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LookupComparison", "benchmark\Collection\LookupComparison\LookupComparison.csproj", "{B7231433-C9A5-414E-B8ED-19C02601E044}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -113,6 +119,14 @@ Global
 		{2AE2C5D2-596B-4F45-9BB3-D6197AD2B565}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AE2C5D2-596B-4F45-9BB3-D6197AD2B565}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AE2C5D2-596B-4F45-9BB3-D6197AD2B565}.Release|Any CPU.Build.0 = Release|Any CPU
+		{306D4F9B-9B9D-458F-8BCB-3A184C1E2915}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{306D4F9B-9B9D-458F-8BCB-3A184C1E2915}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{306D4F9B-9B9D-458F-8BCB-3A184C1E2915}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{306D4F9B-9B9D-458F-8BCB-3A184C1E2915}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7231433-C9A5-414E-B8ED-19C02601E044}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7231433-C9A5-414E-B8ED-19C02601E044}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7231433-C9A5-414E-B8ED-19C02601E044}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7231433-C9A5-414E-B8ED-19C02601E044}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,6 +142,8 @@ Global
 		{49484A2F-67E2-45E9-ABA5-5CAEA23C69AE} = {78ED2F46-53C4-41F2-A173-7A7D45FFA856}
 		{88F9DC63-4688-475A-8035-527835BEA141} = {78ED2F46-53C4-41F2-A173-7A7D45FFA856}
 		{2AE2C5D2-596B-4F45-9BB3-D6197AD2B565} = {78ED2F46-53C4-41F2-A173-7A7D45FFA856}
+		{56C4A736-3D45-4E35-A872-6D2DB054E5D4} = {EC1384E0-7E1E-47DB-8F5C-216C3D7A46A0}
+		{B7231433-C9A5-414E-B8ED-19C02601E044} = {56C4A736-3D45-4E35-A872-6D2DB054E5D4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CFCD26D1-8DF1-4045-AD67-C0213D17C09E}
